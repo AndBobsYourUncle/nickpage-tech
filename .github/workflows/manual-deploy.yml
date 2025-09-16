@@ -3,11 +3,6 @@ name: Manual Deploy to ECS
 on:
   workflow_dispatch:
     inputs:
-      force_deploy:
-        description: 'Force deploy (skip safety checks)'
-        required: false
-        type: boolean
-        default: false
       image_tag:
         description: 'Custom image tag (optional, defaults to commit SHA)'
         required: false
@@ -35,7 +30,6 @@ jobs:
           echo "🚀 Manual deployment triggered"
           echo "📦 Branch: ${{ github.ref_name }}"
           echo "🏷️ Commit: ${{ github.sha }}"
-          echo "⚡ Force deploy: ${{ github.event.inputs.force_deploy }}"
           echo "🏷️ Image tag: ${{ github.event.inputs.image_tag || github.sha }}"
 
       - name: Configure AWS credentials
