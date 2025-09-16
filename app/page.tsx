@@ -11,7 +11,7 @@ export default function Home() {
               Coming Soon
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 font-light tracking-wide mb-2">
-              Something extraordinary is on the way
+              Something extraordinary is on the way!
             </p>
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-emerald-400 to-transparent mx-auto mb-8"></div>
             <div className="flex justify-center space-x-3">
