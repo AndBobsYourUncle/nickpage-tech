@@ -12,16 +12,10 @@ on:
         description: 'Custom image tag (optional, defaults to commit SHA)'
         required: false
         type: string
-      ecs_cluster:
-        description: 'ECS Cluster name'
-        required: true
-        default: 'nickpage-tech-cluster'
-        type: string
-      ecs_service:
-        description: 'ECS Service name'
-        required: true
-        default: 'nickpage-tech-service'
-        type: string
+
+env:
+  ECS_CLUSTER: production-cluster
+  ECS_SERVICE: nickpage-tech
 
 permissions:
   id-token: write
@@ -82,8 +76,6 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: nickpage-tech
           IMAGE_TAG: ${{ github.event.inputs.image_tag || github.sha }}
-          ECS_CLUSTER: ${{ github.event.inputs.ecs_cluster }}
-          ECS_SERVICE: ${{ github.event.inputs.ecs_service }}
         run: |
           echo "🚀 Starting ECS deployment..."
 
@@ -137,9 +129,6 @@ jobs:
 
       - name: Verify deployment
         timeout-minutes: 5
-        env:
-          ECS_CLUSTER: ${{ github.event.inputs.ecs_cluster }}
-          ECS_SERVICE: ${{ github.event.inputs.ecs_service }}
         run: |
           echo "🔍 Verifying deployment status..."
 
